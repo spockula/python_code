@@ -18,13 +18,15 @@ def perform_math():
         run = False
     
     elif equation == (str('quit()')) and previous == 0:
-         print('Thank you for using my experimental calculator! see you next time.')
-         run = False
+        print('Thank you for using my experimental calculator! see you next time.')
+        run = False
     else:
         equation = re.sub('[a-zA-Z,.:()""]', '', equation) #at this point, the ReGex is put into use
         if previous == 0:
             previous = eval(equation)
         else:
             previous = eval(str(previous)+ equation)
+
+
 while run:
     perform_math()

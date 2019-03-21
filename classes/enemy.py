@@ -7,4 +7,3 @@ class enemy:
 
     def get_attack(self):
         print (self.attackl, self.attackh)
-

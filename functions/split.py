@@ -12,6 +12,8 @@ def string_play(sentence):
         print('Sentence split into', length, "words:", result)
         tempt = False
     else:
-       print('enter a sentence')
+        print('enter a sentence')
+
+
 while tempt:
     string_play(ans)
