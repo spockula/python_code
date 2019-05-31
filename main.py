@@ -1,3 +1,5 @@
+from locale import currency
+
 from classes.game import bcolors, person
 from classes.magic import spell
 
@@ -33,6 +35,26 @@ while running:
         dmg = player.damage()
         enemy.take_damage(dmg)
         print("You attacked for:", dmg, "points of damage. Enemy HP", enemy.get_hp())
+    elif index == 1:
+        player.choose_magic()
+        choice = int(input("Choose magic:")) - 1
+
+        spell = player.magic[choice]
+        magic_dmg = spell.generate_damage()
+
+        current_mp = player.get_mp()
+        if spell.cost > current_mp:
+            print(bcolors.FAIL + "\nNot enough MP\n" + bcolors.OKGREEN + "\nHP: \n", str(player.get_hp()) + bcolors.ENDC)
+            continue
+
+        player.reduce_mp(spell.cost)
+
+        if spell.Type == "Health":
+            player.heal(magic_dmg)
+            print(bcolors.OKBLUE + "\n" + spell.name + " heals for", str(magic_dmg), "Hit Points" + bcolors.OKGREEN + "\nHP: \n", str(player.get_hp()) + bcolors.ENDC)
+        elif spell.Type == "Black":
+            enemy.take_damage(magic_dmg)
+            print(bcolors.OKBLUE + "\n" + spell.name + " deals", str(magic_dmg), "points of damage" + bcolors.OKGREEN + "\nHP: \n", str(player.get_hp()) + bcolors.ENDC)
 
     enemy_choice = 1
 

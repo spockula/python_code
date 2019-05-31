@@ -1,4 +1,5 @@
 import random
+from .magic import spell
 
 
 class bcolors:
@@ -24,8 +25,8 @@ class person:
         self.magic = magic
         self.actions = ["Attack", "Magic"]
 
-        def damage(self):
-            return random.randrange(self.attackl, self.attackh)
+    def damage(self):
+        return random.randrange(self.attackl, self.attackh)
 
     def heal(self, dmg):
         self.hp += dmg
@@ -64,5 +65,5 @@ class person:
         i = 1
         print("Magic:")
         for spell in self.magic:
-            print(str(i) + ":", spell["name"], "(cost:", str(spell["mp"])+")")
+            print(str(i) + ":", spell.name, "(cost:", str(spell.cost) + ")")
             i += 1
